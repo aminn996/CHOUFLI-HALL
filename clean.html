@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cleaning Service – Choufli Hall</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f9fb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #005f73;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #cceeff;
+    }
+
+    .hero {
+      background: url("https://images.unsplash.com/photo-1581578017420-6c61b7c77372?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .service-section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .service-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .service-content img {
+      width: 300px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .service-text {
+      flex: 1;
+    }
+
+    .service-text h2 {
+      color: #00707a;
+      margin-bottom: 1rem;
+    }
+
+    .service-text p {
+      margin-bottom: 1rem;
+    }
+
+    .book-btn {
+      display: inline-block;
+      background-color: #005f73;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      font-weight: bold;
+    }
+
+    .book-btn:hover {
+      background-color: #0ea5e9;
+    }
+
+    footer {
+      background-color: #005f73;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    /* Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Choufli Hall</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1 class="fade-in">Cleaning Services by Kalthoum 🧼</h1>
+  </section>
+
+  <section class="service-section fade-in">
+    <div class="service-content">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Kalthoum_Choufli_Hall.jpg" alt="Kalthoum from Choufli Hall">
+      <div class="service-text">
+        <h2>Home & Office Cleaning</h2>
+        <p>
+          Inspired by Kalthoum’s no-nonsense cleaning style from *Choufli Hall*, our service brings sparkling cleanliness to your home or office.
+        </p>
+        <p>
+          Whether you're preparing for guests or just need a deep refresh, our team provides top-quality sanitation, organization, and shine.
+        </p>
+        <a href="booking.html" class="book-btn">Book Cleaning Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Choufli Hall – All Rights Reserved. | <a href="mailto:baltimedamin909@gmail.com" style="color: #a6e1fa;">Contact Us</a>
+  </footer>
+
+</body>
+</html>
+
