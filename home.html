@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choufli Hall</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://tse3.mm.bing.net/th/id/OIP.ic2UFLWnaGCZJznDRGlnNAHaEK?pid=ImgDet&w=176&h=99&c=7&o=7&rm=3') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #005f73;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 3s;
+    }
+
+    #loading-screen span {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      animation: bounce 1s infinite alternate;
+    }
+
+    #loading-screen span:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    #loading-screen span:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-20px);
+      }
+    }
+
+    
+    .navbar {
+      background: #0ea5e9;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo span {
+      font-size: 1.8rem;
+      color: white;
+      font-weight: bold;
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideIn 0.5s forwards;
+    }
+
+    .logo span:nth-child(1) {
+      animation-delay: 0.05s;
+    }
+
+    .logo span:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .logo span:nth-child(3) {
+      animation-delay: 0.15s;
+    }
+
+    .logo span:nth-child(4) {
+      animation-delay: 0.2s;
+    }
+
+    .logo span:nth-child(5) {
+      animation-delay: 0.25s;
+    }
+
+    .logo span:nth-child(6) {
+      animation-delay: 0.3s;
+    }
+
+    .logo span:nth-child(7) {
+      animation-delay: 0.35s;
+    }
+
+    .logo span:nth-child(8) {
+      animation-delay: 0.4s;
+    }
+
+    .logo span:nth-child(9) {
+      animation-delay: 0.45s;
+    }
+
+    .logo span:nth-child(10) {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background-color: white;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+   
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active div:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+   
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: #0ea5e9;
+        flex-direction: column;
+        width: 200px;
+        padding: 1rem 0;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 10px;
+        height: calc(100vh - 60px);
+      }
+
+      .nav-links.show {
+        transform: translateX(0);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    .hero.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-btn {
+      background-color: #005f73;
+      color: white;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-btn:hover {
+      background-color: #0ea5e9;
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .services {
+      padding: 4rem 2rem;
+      background-color: #fefefe;
+    }
+
+    .services h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #005f73;
+      margin-bottom: 3rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background-color: #e0fbfc;
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: all 0.6s ease;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      cursor: default;
+    }
+
+    .service-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card.slimen:hover {
+      animation: bounce 0.6s ease;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .service-card.slimen::after {
+      content: "Très très bien!";
+      position: absolute;
+      background: gold;
+      color: #000;
+      font-size: 0.9rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      top: 10px;
+      right: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      user-select: none;
+    }
+
+    .service-card.slimen:hover::after {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .service-card i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #005f73;
+    }
+
+    .service-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #005f73;
+      box-shadow: 0 0 10px #0ea5e9aa;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: #00707a;
+    }
+
+    .service-card p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      min-height: 60px;
+      color: #333;
+    }
+
+    .service-card button {
+      background-color: #005f73;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-card button:hover {
+      background-color: #0ea5e9;
+      box-shadow: 0 5px 15px rgba(14, 165, 233, 0.7);
+    }
+
+    
+    footer {
+      background-color: #005f73;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 3rem;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    footer a {
+      color: #0ea5e9;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 0.3rem;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #a6e1fa;
+    }
+  </style>
+</head>
+
+<body id="home">
+
+ 
+  <div id="loading-screen">
+    <span>
+       <div>
+        <img  src="https://www.businessnews.com.tn/images/album/IMGBN99305chouflihal.png" width="100%" height="100%">
+        
+        <div class="card-body">
+          <h4 class="card-title">welcome to choufli hall</h4>
+          
+        </div>
+      </div>
+    </span>
+  </div>
+
+  <header class="navbar">
+    <div class="logo" id="logo">Choufli Hall</div>
+    <nav class="nav-links" id="nav-links">
+      <a href="home.html">Home</a>
+      <a href="settings.html">Settings</a>
+      <a href="login.html">Login</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </header>
+
+ 
+  <section class="hero">
+    <h1>Book Trusted Professionals from Choufli Hall</h1>
+    <p>Your favorite characters, your favorite services.</p>
+    <a href="#services" class="hero-btn">Explore Services</a>
+  </section>
+
+  
+  <section class="services" id="services">
+    <h2>Popular Services</h2>
+    <div class="service-grid">
+
+      
+      <div class="service-card slimen" id="slimen-card" tabindex="0" role="button" aria-pressed="false"
+        aria-label="Book Dr. Slimen Labyedh">
+        <img
+          src="https://www.bing.com/th/id/OGC.3f1602e161d2429cb8e04fd4461c21d8?o=7&pid=1.7&rm=3&rurl=https%3a%2f%2fmedia1.tenor.com%2fm%2fvxSctAx9uX0AAAAd%2fchoufli-hal-choufli.gif&ehk=H4lEHFvDRpqRdILeebZDARTrelEgrvNmPH%2fC%2ffzxJEw%3d"
+          alt="Slimen Labyedh" loading="lazy" />
+      
+        <h3>Slimen Labyedh</h3>
+        <p>Consult general physicians and therapists, just like in the sitcom.</p>
+        <button>Book Now</button>
+      </div>
+
+      
+      <div class="service-card" tabindex="0" role="button" aria-label="Book Beji Matrix Electrical Service">
+        <img
+          src="https://www.bing.com/th/id/OGC.a5e0588e6e5098b670f07fa821ffba70?o=7&pid=1.7&rm=3&rurl=https%3a%2f%2fmedia.tenor.com%2fmffcCvw81wEAAAAM%2fchouflihal-sbou3i.gif&ehk=pHhRZjAedHtU5YGDSzWtsjKHxsG2j%2fogOhX9Nz%2f%2bZUg%3d"
+          alt="Beji Matrix" loading="lazy" />
+        <h3>Beji Matrix</h3>
+        <p>Fast electrical repairs and installations at your home.</p>
+        <a href="electric.html"><button>Book Now</button></a>
+      </div>
+
+      
+      <div class="service-card" tabindex="0" role="button" aria-label="Book Fouchika Plumbing Service">
+        <img
+          src="https://www.bing.com/th/id/OGC.4d200112f0820e4aee0690bb772b143b?o=7&pid=1.7&rm=3&rurl=https%3a%2f%2fc.tenor.com%2fJJYb_5yeMe0AAAAC%2fchoufli-hal-fouchika.gif&ehk=lHJiCMvXzYxkExudRkrVcZSKbEL9CJCTbZ27PoPdzYc%3d"
+          alt="Fouchika" loading="lazy" />
+        <h3>Fouchika</h3>
+        <p>samsar — just like the show!</p>
+        <a href="plumbing.html"><button>Book Now</button></a>
+      </div>
+
+      
+      <div class="service-card" tabindex="0" role="button" aria-label="Book Foufa Beauty Service">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.JnBwhj0hP5_89Bl4vD8-KgHaF6?pid=ImgDet&w=474&h=378&rs=1&o=7&rm=3"
+          alt="Foufa" loading="lazy" />
+        <h3>Foufa</h3>
+        <p>Get beauty services inspired by Foufa's flair.</p>
+        <a href="cosmetique.html"><button>Book Now</button></a>
+      </div>
+
+      <div class="service-card" tabindex="0" role="button" aria-label="Book kalthoum cleaner Service">
+        <img
+          src="https://www.bing.com/th/id/OGC.d6e4e2b4b2a52f61d0800cea964da72b?o=7&pid=1.7&rm=3&rurl=https%3a%2f%2fc.tenor.com%2fnoBWqKWksN4AAAAC%2fchoufli-hal-kalthoum.gif&ehk=wHUx9nfOYKWQBr0HuxNJ2eS8UkpLk%2brg%2bcUDIXlnZyg%3d"
+          alt="kalthoum" loading="lazy" />
+        <h3>Kalthoum</h3>
+        <p>Get cleaning services to your home.</p>
+        <a href="cleaner.html"><button>Book Now</button></a>
+      </div>
+       <div class="service-card" tabindex="0" role="button" aria-label="Book Fouchika Plumbing Service">
+        <img
+          src="data:image/webp;base64,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"
+          alt="dadou" loading="lazy" />
+        <h3>dadou</h3>
+        <p>offre d'emploi</p>
+        <a href="dadou.html"><button>Book Now</button></a>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <footer>
+    <p>&copy; 2025 Choufli Hall. All rights reserved.</p>
+    <p>
+      <a href="tel:99879165">Call Us</a> |
+      <a href="mailto:baltimedamin909@gmail.com">Email Us</a>
+    </p>
+  </footer>
+
+  
+  <audio id="slimen-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+
+  <script>
+    
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loading-screen');
+      loader.style.animationPlayState = 'running';
+      setTimeout(() => loader.style.display = 'none', 4000);
+
+      
+      document.querySelector('.hero').classList.add('visible');
+
+      
+      const cards = document.querySelectorAll('.service-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      cards.forEach(card => observer.observe(card));
+    });
+
+    
+    const logoText = "Choufli Hall";
+    const logoContainer = document.getElementById("logo");
+    logoContainer.innerHTML = logoText
+      .split('')
+      .map((letter, idx) => `<span style="animation-delay:${idx * 0.05}s">${letter}</span>`)
+      .join('');
+
+    
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('show');
+    });
+
+    
+    hamburger.addEventListener('keydown', e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        hamburger.click();
+      }
+    });
+
+    
+    const slimenCard = document.getElementById('slimen-card');
+    const slimenSound = document.getElementById('slimen-sound');
+
+    function playSlimenSound() {
+      slimenSound.currentTime = 0;
+      slimenSound.play();
+    }
+
+    slimenCard.addEventListener('click', () => {
+      playSlimenSound();
+      alert('Très très bien! Dr. Slimen Labyedh at your service.');
+    });
+
+    slimenCard.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        playSlimenSound();
+        alert('Très très bien! Dr. Slimen Labyedh at your service.');
+      }
+    });
+  </script>
+</body>
+
+</html>
